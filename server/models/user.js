@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 const {
   Model
 } = require('sequelize');
@@ -15,12 +16,54 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "username cannot be empty"
+        },
+        notEmpty: {
+          msg: "username cannot be empty"
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "email cannot be empty"
+        },
+        notEmpty: {
+          msg: "email cannot be empty"
+        },
+      },
+      unique: {
+        msg: "email must be unique"
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "password cannot be empty"
+        },
+        notEmpty: {
+          msg: "password cannot be empty"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'User',
+    hooks: {
+      beforeCreate: (instance) => {
+        const salt = bcrypt.genSaltSync(10)
+        instance.password = bcrypt.hashSync(instance.password, salt)
+      }
+    }
   });
   return User;
 };
