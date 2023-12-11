@@ -9,7 +9,7 @@ router.post("/", authentication, Controller.createPost)
 
 router.put("/:id", authentication, Controller.editPost)
 
-router.delete("/:id")
+router.delete("/:id", authentication, Controller.deletePost)
 
 router.get("/:id", Controller.getPostById)
 

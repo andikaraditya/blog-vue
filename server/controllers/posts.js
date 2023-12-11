@@ -85,6 +85,30 @@ class Controller {
             next(error)
         }
     }
+
+    static async deletePost(req, res, next) {
+        try {
+            const {id} = req.params
+            const {id:userId} = req.user
+
+
+            const post = await Post.findByPk(id)
+
+            if (!post) {
+                throw {name: "NotFound", message: "post not found"}
+            }
+
+            if (post.User_id !== userId) {
+                throw {name: "Unauthorized", message: "authorization error"}
+            }
+
+            await post.destroy()
+
+            res.status(200).json({message: "post has been deleted"})
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = Controller
