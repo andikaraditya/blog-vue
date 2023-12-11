@@ -1,10 +1,16 @@
-const {Post} = require('../models');
+const {Post, User} = require('../models');
 const {v4:uuidv4} = require('uuid');
 
 class Controller {
     static async getPosts(req, res, next) {
         try {
-            const posts = await Post.findAll()
+            const posts = await Post.findAll({
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                },
+                order: [["createdAt", "ASC"]]
+            })
 
             console.log(posts[0].Title)
 
@@ -18,7 +24,12 @@ class Controller {
         try {
             const {id} = req.params
 
-            const post = await Post.findByPk(id)
+            const post = await Post.findByPk(id, {
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                }
+            })
 
             if (!post) {
                 throw {name: "NotFound", message: "post not found"}
