@@ -15,6 +15,9 @@ function errorHandler(error, req, res, next) {
         case "JsonWebTokenError":
             res.status(401).json({message: error.message})
             break;
+        case "Unauthorized":
+            res.status(403).json({message: error.message})
+            break;
         case "NotFound":
             res.status(404).json({message: error.message})
             break;

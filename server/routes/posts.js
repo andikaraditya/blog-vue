@@ -7,6 +7,8 @@ router.get("/", Controller.getPosts)
 
 router.post("/", authentication, Controller.createPost)
 
+router.put("/:id", authentication, Controller.editPost)
+
 router.delete("/:id")
 
 router.get("/:id", Controller.getPostById)
