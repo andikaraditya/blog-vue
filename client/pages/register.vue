@@ -2,18 +2,18 @@
     <div class="login-card">
         <h1>Register</h1>
         <p>Click <NuxtLink to="/login">here</NuxtLink> to login</p>
-        <form>
+        <form @submit.prevent="handleRegister">
             <div class="form-group">
                 <label for="">Username</label>
-                <input type="text" placeholder="Enter your username">
+                <input v-model="username" type="text" placeholder="Enter your username" required>
             </div>
             <div class="form-group">
                 <label for="">Email</label>
-                <input type="text" placeholder="Enter your email">
+                <input v-model="email" type="text" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="">Password</label>
-                <input type="password" placeholder="Enter your password">
+                <input v-model="password" type="password" placeholder="Enter your password" required>
             </div>
             <button class="pointer-hover">Login</button>
         </form>
@@ -21,7 +21,17 @@
 </template>
 
 <script setup>
+    const email = ref("")
+    const password = ref("")
+    const username = ref("")
 
+    function handleRegister() {
+        console.log({
+            username: username.value,
+            email: email.value,
+            password: password.value
+        })
+    }
 </script>
 
 <style scoped>
@@ -44,6 +54,15 @@ h1 {
     /* background-color: green; */
     width: 90%;
     margin: auto;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+p a {
+    color: black;
+    font-weight: bold;
 }
 
 label, input {

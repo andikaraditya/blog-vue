@@ -2,14 +2,14 @@
     <div class="login-card">
         <h1>Login</h1>
         <p>Click <NuxtLink to="/register">here</NuxtLink> to register</p>
-        <form>
+        <form @submit.prevent="handleLogin">
             <div class="form-group">
                 <label for="">Email</label>
-                <input type="text" placeholder="Enter your email">
+                <input v-model="email" type="text" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="">Password</label>
-                <input type="password" placeholder="Enter your password">
+                <input v-model="password" type="password" placeholder="Enter your password" required>
             </div>
             <button class="pointer-hover">Login</button>
         </form>
@@ -17,7 +17,15 @@
 </template>
 
 <script setup>
+    const email = ref("")
+    const password = ref("")
 
+    function handleLogin() {
+        console.log({
+            email: email.value,
+            password: password.value
+        })
+    }
 </script>
 
 <style scoped>
@@ -40,6 +48,15 @@ h1 {
     /* background-color: green; */
     width: 90%;
     margin: auto;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+p a {
+    color: black;
+    font-weight: bold;
 }
 
 label, input {
