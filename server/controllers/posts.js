@@ -1,4 +1,5 @@
 const {Post} = require('../models');
+const {v4:uuidv4} = require('uuid');
 
 class Controller {
     static async getPosts(req, res, next) {
@@ -24,6 +25,24 @@ class Controller {
             }
 
             res.status(200).json(post)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async createPost(req, res, next) {
+        try {
+            const {Title, Description, Image} = req.body
+            const {id} = req.user
+            const post = await Post.create({
+                Uuid: uuidv4(),
+                User_id: id,
+                Title: Title,
+                Description: Description,
+                Image: Image
+            })
+
+            res.status(201).json(post)
         } catch (error) {
             next(error)
         }

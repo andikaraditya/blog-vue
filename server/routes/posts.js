@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get("/", Controller.getPosts)
 
-router.post("/")
+router.post("/", authentication, Controller.createPost)
 
 router.delete("/:id")
 
