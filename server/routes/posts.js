@@ -1,5 +1,6 @@
 const express = require("express")
 const Controller = require("../controllers/posts")
+const authentication = require("../middlewares/authentication")
 const router = express.Router()
 
 router.get("/", Controller.getPosts)
@@ -8,6 +9,6 @@ router.post("/")
 
 router.delete("/:id")
 
-router.get("/:id")
+router.get("/:id", Controller.getPostById)
 
 module.exports = router

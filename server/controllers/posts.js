@@ -12,6 +12,22 @@ class Controller {
             next(error)
         }
     }
+
+    static async getPostById(req, res, next) {
+        try {
+            const {id} = req.params
+
+            const post = await Post.findByPk(id)
+
+            if (!post) {
+                throw {name: "NotFound", message: "post not found"}
+            }
+
+            res.status(200).json(post)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = Controller
