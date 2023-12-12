@@ -2,7 +2,8 @@
     <div>
         <nav>
             <NuxtLink to="/">Home</NuxtLink>
-            <NuxtLink to="/login">Login</NuxtLink>
+            <a v-if="access_token" @click.prevent="handleLogout" href="">Logout</a>
+            <NuxtLink v-else to="/login">Login</NuxtLink>
         </nav>
 
         <div>
@@ -12,7 +13,19 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 
+const defaultStore = useDefaultStore()
+const {access_token} = storeToRefs(defaultStore)
+
+onMounted(() => {
+    defaultStore.setStoreToken(localStorage.access_token)
+})
+
+function handleLogout() {
+    defaultStore.clearStoreToken()
+    localStorage.removeItem("access_token")
+}
 </script>
 
 <style scoped>
