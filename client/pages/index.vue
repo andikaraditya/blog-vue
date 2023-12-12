@@ -24,7 +24,6 @@
         </header>
         <p id="body-title">My Journals</p>
         <div class="post-container">
-            
             <PostCard 
             v-for="post in posts"
             :key="post.id"

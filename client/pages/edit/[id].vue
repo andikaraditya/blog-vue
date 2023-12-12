@@ -7,8 +7,8 @@
                 <input v-model="post.Title" type="text" name="" id="" placeholder="Enter post title">
                 <label for="">Content</label>
                 <textarea v-model="post.Description" name="" id="" cols="30" rows="10" placeholder="Enter post content"></textarea>
-                <label for="">Image</label>
-                <input v-model="post.Image" type="text" name="" id="" placeholder="Enter image url">
+                <!-- <label for="">Image</label> -->
+                <!-- <input v-model="post.Image" type="text" name="" id="" placeholder="Enter image url"> -->
                 <button class="pointer-hover">Submit</button>
             </form>
             <button @click="handleDelete" id="delete" class="pointer-hover">Delete Post</button>
@@ -39,7 +39,6 @@
                 data: {
                     Title: Title,
                     Description: Description,
-                    Image: Image
                 },
                 headers: {
                     access_token: access_token.value

@@ -8,7 +8,9 @@
                 <label for="">Content</label>
                 <textarea v-model="Description" name="" id="" cols="30" rows="10" placeholder="Enter post content"></textarea>
                 <label for="">Image</label>
-                <input v-model="Image" type="text" name="" id="" placeholder="Enter image url">
+                <!-- <input v-model="Image" type="text" name="" id="" placeholder="Enter image url"> -->
+                <p>Development note: <br> pick the folder "/public/blog" if the folder doesn't exists then create it first</p>
+                <input type="file" @change="saveImage" accept="image/png, image/jpeg, image/webp" required>
                 <button class="pointer-hover">Submit</button>
             </form>
         </div>
@@ -19,7 +21,7 @@
     import axios from "axios";
     const Title = ref("")
     const Description = ref("")
-    const Image = ref("")
+    let Image = ref("")
     const defaultStore = useDefaultStore()
     const {access_token} = storeToRefs(defaultStore)
     async function handleCreate() {
@@ -30,7 +32,7 @@
                 data: {
                     Title: Title.value,
                     Description: Description.value,
-                    Image: Image.value
+                    Image: Image
                 },
                 headers: {
                     access_token: access_token.value
@@ -40,6 +42,23 @@
             navigateTo("/")
         } catch (error) {
             console.log(error)
+        }
+    }
+    async function saveImage(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        try {
+            const directoryHandle = await window.showDirectoryPicker();
+            const fileHandle = await directoryHandle.getFileHandle(file.name, { create: true });
+            const writable = await fileHandle.createWritable();
+            await writable.write(file);
+            await writable.close();
+
+            Image = "/blog/" + file.name
+            // console.log(Image)
+        } catch (error) {
+            console.error('Error saving image:', error);
         }
     }
 </script>
