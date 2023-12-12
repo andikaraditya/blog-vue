@@ -19,6 +19,10 @@
 <script setup>
     import axios from "axios";
     const {id} = useRoute().params
+
+    const defaultStore = useDefaultStore()
+    const {access_token} = storeToRefs(defaultStore)
+
     const {data} = await axios({
         method: "get",
         url: `http://localhost:3000/posts/${id}`
@@ -28,7 +32,7 @@
     async function handleEdit() {
         try {
             const {Title, Description, Image} = post.value
-            console.log({Title, Description, Image})
+
             const {data} = await axios({
                 method: "put",
                 url: `http://localhost:3000/posts/${id}`,
@@ -38,7 +42,7 @@
                     Image: Image
                 },
                 headers: {
-                    access_token: localStorage.access_token
+                    access_token: access_token.value
                 }
             })
 
@@ -54,7 +58,7 @@
                 method: "delete",
                 url: `http://localhost:3000/posts/${id}`,
                 headers: {
-                    access_token: localStorage.access_token
+                    access_token: access_token.value
                 }
             })
 
@@ -63,12 +67,6 @@
             console.log(error)
         }
     }
-
-    onMounted(() => {
-        if (!localStorage.access_token) {
-            navigateTo("/")
-        }
-    })
 </script>
 
 <style scoped>

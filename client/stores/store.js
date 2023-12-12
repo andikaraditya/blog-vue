@@ -2,8 +2,9 @@ import { defineStore } from "pinia"
 
 export const useDefaultStore = defineStore("defaultStore", {
     state: () => {
+        const cookie = useCookie()
         return {
-            access_token: ""
+            access_token: cookie.value
         }
     },
     actions: {

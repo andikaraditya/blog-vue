@@ -20,7 +20,8 @@
     const Title = ref("")
     const Description = ref("")
     const Image = ref("")
-
+    const defaultStore = useDefaultStore()
+    const {access_token} = storeToRefs(defaultStore)
     async function handleCreate() {
         try {
             const {data} = await axios({
@@ -32,7 +33,7 @@
                     Image: Image.value
                 },
                 headers: {
-                    access_token: localStorage.access_token
+                    access_token: access_token.value
                 }
             })
 
@@ -41,11 +42,6 @@
             console.log(error)
         }
     }
-    onMounted(() => {
-        if (!localStorage.access_token) {
-            navigateTo("/")
-        }
-    })
 </script>
 
 <style scoped>

@@ -23,7 +23,7 @@ import { onMounted } from "vue";
     const password = ref("")
 
     const defaultStore = useDefaultStore()
-
+    const cookie = useCookie()
     async function handleLogin() {
         try {
             const {data} = await axios({
@@ -34,19 +34,14 @@ import { onMounted } from "vue";
                     password: password.value
                 }
             })
-            localStorage.setItem("access_token", data.access_token)
+            // localStorage.setItem("access_token", data.access_token)
             defaultStore.setStoreToken(data.access_token)
+            cookie.value = data.access_token
             navigateTo("/")
         } catch (error) {
             console.log(error)
         }
     }
-
-    onMounted(() => {
-        if (localStorage.access_token) {
-            navigateTo("/")
-        }
-    })
 </script>
 
 <style scoped>

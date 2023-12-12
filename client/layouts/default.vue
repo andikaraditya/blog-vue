@@ -17,14 +17,12 @@ import { storeToRefs } from "pinia";
 
 const defaultStore = useDefaultStore()
 const {access_token} = storeToRefs(defaultStore)
-
-onMounted(() => {
-    defaultStore.setStoreToken(localStorage.access_token)
-})
+const cookie = useCookie()
 
 function handleLogout() {
+    cookie.value = null
     defaultStore.clearStoreToken()
-    localStorage.removeItem("access_token")
+    // localStorage.removeItem("access_token")
 }
 </script>
 
