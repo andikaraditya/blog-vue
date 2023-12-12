@@ -2,6 +2,12 @@
     <div>
         <h1>Home</h1>
         <div class="post-container">
+            <button
+            @click="navigateTo(`/create`)"
+            class="pointer-hover"
+            >
+                Create Post
+            </button>
             <PostCard 
             v-for="post in posts"
             :key="post.id"
@@ -27,6 +33,18 @@ const posts = ref(data)
 h1 {
     font-size: 3rem;
     text-align: center;
+    margin: 1rem 0;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 10px;
+    border: solid black 1px;
+    width: 150px;
+    align-self: center;
+    margin-bottom: 1rem;
 }
 
 .post-container {
