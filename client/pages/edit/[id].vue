@@ -77,7 +77,7 @@ h1 {
     width: 500px;
     text-align: center;
     margin: 4rem auto;
-    border: solid black 2px;
+    border: solid var(--black) 2px;
     padding: 2rem 1rem;
     border-radius: 10px;
 }
@@ -95,7 +95,7 @@ input {
     margin: 1rem auto;
     height: 2.5rem;
     border-radius: 10px;
-    border: solid black 1px;
+    border: solid var(--black) 1px;
     padding-left: 1rem;
 }
 
@@ -104,7 +104,7 @@ textarea {
     margin: 1rem auto;
     height: 400px;
     border-radius: 10px;
-    border: solid black 1px;
+    border: solid var(--black) 1px;
     padding-left: 1rem;
 }
 
@@ -117,7 +117,7 @@ button {
 }
 
 #delete {
-    background-color: red;
+    background-color: #FF4F4F;
     color: white;
     border: none;
     padding: 0.7rem 1.5rem;

@@ -29,7 +29,7 @@ const {post} = defineProps(["post"])
 <style scoped>
 .post-card {
     width: 500px;
-    border: solid black 2px;
+    border: solid var(--black) 2px;
     padding: 1rem 3rem;
     height: 400px;
     align-self: center;

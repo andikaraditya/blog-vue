@@ -52,7 +52,7 @@ button {
     padding: 0.5rem;
     background-color: white;
     border-radius: 10px;
-    border: solid black 1px;
+    border: solid var(--black) 1px;
     width: 150px;
     align-self: center;
     margin-bottom: 1rem;

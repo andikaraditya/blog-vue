@@ -34,12 +34,12 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 1rem 3rem;
-    border-bottom: solid black 4px;
+    border-bottom: solid var(--black) 4px;
 }
 
 a {
     font-size: 2rem;
-    color: black;
+    color: var(--black);
     text-decoration: none;
 }
 
