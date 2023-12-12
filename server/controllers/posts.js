@@ -9,10 +9,10 @@ class Controller {
                     model: User,
                     attributes: ["username"]
                 },
-                order: [["createdAt", "ASC"]]
+                order: [["createdAt", "DESC"]]
             })
 
-            console.log(posts[0].Title)
+            // console.log(posts[0].Title)
 
             res.status(200).json(posts)
         } catch (error) {
