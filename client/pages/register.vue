@@ -21,16 +21,26 @@
 </template>
 
 <script setup>
+    import axios from "axios";
     const email = ref("")
     const password = ref("")
     const username = ref("")
 
-    function handleRegister() {
-        console.log({
-            username: username.value,
-            email: email.value,
-            password: password.value
-        })
+    async function handleRegister() {
+        try {
+            const {data} = await axios({
+                method: "post",
+                url: "http://localhost:3000/register",
+                data: {
+                    username: username.value,
+                    email: email.value,
+                    password: password.value
+                }
+            })
+            navigateTo("/login")
+        } catch (error) {
+            console.log(error)
+        }
     }
 </script>
 

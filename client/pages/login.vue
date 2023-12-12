@@ -17,14 +17,25 @@
 </template>
 
 <script setup>
+    import axios from "axios";
     const email = ref("")
     const password = ref("")
 
-    function handleLogin() {
-        console.log({
-            email: email.value,
-            password: password.value
-        })
+    async function handleLogin() {
+        try {
+            const {data} = await axios({
+                method: "post",
+                url: "http://localhost:3000/login",
+                data: {
+                    email: email.value,
+                    password: password.value
+                }
+            })
+            localStorage.setItem("access_token", data.access_token)
+            navigateTo("/")
+        } catch (error) {
+            console.log(error)
+        }
     }
 </script>
 
