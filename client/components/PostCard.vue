@@ -1,5 +1,7 @@
 <template>
-    <div class="post-card pointer-hover">
+    <div 
+    @click="navigateTo(`/posts/1`)"
+    class="post-card pointer-hover">
         <h2>Post Title</h2>
         <span>Posted by anonymous | date</span>
         <div class="card-text">
