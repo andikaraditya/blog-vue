@@ -1,5 +1,9 @@
 <template>
     <div class="article-container">
+        <header>
+            <div id="header-content">
+            </div>
+        </header>
         <h1>{{ post.Title }}</h1>
         <img :src="post.Image" alt="">
         <button
@@ -7,7 +11,7 @@
         class="pointer-hover"
         @click="navigateTo(`/edit/${post.id}`)"
         >Edit Post</button>
-        <span>Posted by {{ post.User.username }} | {{ (new Date(post.createdAt)).toLocaleString("id-ID", {
+        <span>Posted by {{ post.User.username }} <br> {{ (new Date(post.createdAt)).toLocaleString("id-ID", {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
@@ -37,14 +41,32 @@
 </script>
 
 <style scoped>
-.article-container {
-    display: flex;
-    flex-direction: column;
+header {
+    height: 40vh;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Pigeon_Point_Lighthouse_%282016%29.jpg/2560px-Pigeon_Point_Lighthouse_%282016%29.jpg");
+    background-size: 120%;
+    margin-bottom: 3rem;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+#header-content {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.11);
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 5rem;
     text-align: center;
+    margin: 3rem auto;
+    color: black;
+}
+
+.article-container {
+    display: flex;
+    flex-direction: column;
 }
 
 img {
@@ -65,6 +87,9 @@ button {
 span {
     align-self: center;
     font-size: 1.3rem;
+    margin: 1rem auto;
+    text-align: center;
+    line-height: 2rem;
 }
 
 p {
