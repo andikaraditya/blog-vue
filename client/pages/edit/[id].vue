@@ -63,6 +63,12 @@
             console.log(error)
         }
     }
+
+    onMounted(() => {
+        if (!localStorage.access_token) {
+            navigateTo("/")
+        }
+    })
 </script>
 
 <style scoped>

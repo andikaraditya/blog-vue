@@ -18,6 +18,7 @@
 
 <script setup>
     import axios from "axios";
+import { onMounted } from "vue";
     const email = ref("")
     const password = ref("")
 
@@ -40,6 +41,12 @@
             console.log(error)
         }
     }
+
+    onMounted(() => {
+        if (localStorage.access_token) {
+            navigateTo("/")
+        }
+    })
 </script>
 
 <style scoped>
