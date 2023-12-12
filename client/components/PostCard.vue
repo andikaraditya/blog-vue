@@ -51,5 +51,6 @@ p {
     font-size: 1.5rem;
     white-space: pre-line;
     line-height: 2rem;
+    text-align: justify;
 }
 </style>

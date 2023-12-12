@@ -98,5 +98,15 @@ p {
     line-height: 2rem;
     width: 700px;
     align-self: center;
+    text-align: justify;
+}
+
+@media (max-width: 860px) {
+    h1 {
+        font-size: 4rem;
+    }
+    p {
+        width: 80%;
+    }
 }
 </style>

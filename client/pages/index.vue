@@ -103,4 +103,14 @@ button {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+@media (max-width: 1250px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    #header-content p {
+        font-size: 1.3rem;
+    }
+}
 </style>
