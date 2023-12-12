@@ -3,14 +3,23 @@
         <h1>Home</h1>
         <div class="post-container">
             <PostCard 
-            v-for="i in 5"
-            :key="i"
+            v-for="post in posts"
+            :key="post.id"
+            :post="post"
             />
         </div>
     </div>
 </template>
 
 <script setup>
+import axios from "axios";
+
+const {data} = await axios({
+    method: "get",
+    url: "http://localhost:3000/posts"
+})
+
+const posts = ref(data)
 
 </script>
 
