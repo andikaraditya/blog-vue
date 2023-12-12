@@ -3,10 +3,18 @@
         <h1>Home</h1>
         <div class="post-container">
             <button
+            v-if="access_token"
             @click="navigateTo(`/create`)"
             class="pointer-hover"
             >
                 Create Post
+            </button>
+            <button
+            v-else
+            @click="navigateTo(`/login`)"
+            class="pointer-hover"
+            >
+                Login to create post
             </button>
             <PostCard 
             v-for="post in posts"
@@ -19,6 +27,9 @@
 
 <script setup>
 import axios from "axios";
+
+const defaultStore = useDefaultStore()
+const {access_token} = storeToRefs(defaultStore)
 
 const {data} = await axios({
     method: "get",

@@ -21,6 +21,8 @@
     const email = ref("")
     const password = ref("")
 
+    const defaultStore = useDefaultStore()
+
     async function handleLogin() {
         try {
             const {data} = await axios({
@@ -32,6 +34,7 @@
                 }
             })
             localStorage.setItem("access_token", data.access_token)
+            defaultStore.setStoreToken(data.access_token)
             navigateTo("/")
         } catch (error) {
             console.log(error)

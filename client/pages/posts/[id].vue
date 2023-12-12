@@ -3,9 +3,17 @@
         <h1>{{ post.Title }}</h1>
         <img :src="post.Image" alt="">
         <button
+        v-if="access_token"
         class="pointer-hover"
         @click="navigateTo(`/edit/${post.id}`)"
         >Edit Post</button>
+        <span>Posted by {{ post.User.username }} | {{ (new Date(post.createdAt)).toLocaleString("id-ID", {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        }) }}
+        </span>
         <p>
             {{ post.Description }}
         </p>
@@ -14,6 +22,10 @@
 
 <script setup>
     import axios from "axios";
+
+    const defaultStore = useDefaultStore()
+    const {access_token} = storeToRefs(defaultStore)
+
     const {id} = useRoute().params
     const {data} = await axios({
         method: "get",
@@ -48,6 +60,11 @@ button {
     padding: 0.5rem 1.5rem;
     width: 200px;
     margin: 1rem auto;
+}
+
+span {
+    align-self: center;
+    font-size: 1.3rem;
 }
 
 p {
