@@ -11,6 +11,7 @@
                 <input v-model="post.Image" type="text" name="" id="" placeholder="Enter image url">
                 <button class="pointer-hover">Submit</button>
             </form>
+            <button @click="handleDelete" id="delete" class="pointer-hover">Delete Post</button>
         </div>
     </div>
 </template>
@@ -42,6 +43,22 @@
             })
 
             navigateTo(`/posts/${id}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function handleDelete() {
+        try {
+            const {data} = await axios({
+                method: "delete",
+                url: `http://localhost:3000/posts/${id}`,
+                headers: {
+                    access_token: localStorage.access_token
+                }
+            })
+
+            navigateTo(`/`)
         } catch (error) {
             console.log(error)
         }
@@ -97,5 +114,13 @@ button {
     background-color: white;
     border-radius: 10px;
     padding: 0.5rem 1.5rem;
+}
+
+#delete {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    margin-top: 3rem;
 }
 </style>
