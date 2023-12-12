@@ -5,7 +5,7 @@
         <form @submit.prevent="handleLogin">
             <div class="form-group">
                 <label for="">Email</label>
-                <input v-model="email" type="text" placeholder="Enter your email" required>
+                <input v-model="email" type="email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="">Password</label>
@@ -39,7 +39,7 @@ import { onMounted } from "vue";
             cookie.value = data.access_token
             navigateTo("/")
         } catch (error) {
-            console.log(error)
+            console.log(error.response.data.message)
         }
     }
 </script>
@@ -58,6 +58,11 @@ import { onMounted } from "vue";
 h1 {
     font-size: 3rem;
     margin: 1rem;
+}
+
+#error-message {
+    color: #FF4F4F;
+    font-weight: bold;
 }
 
 .form-group {

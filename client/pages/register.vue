@@ -9,7 +9,7 @@
             </div>
             <div class="form-group">
                 <label for="">Email</label>
-                <input v-model="email" type="text" placeholder="Enter your email" required>
+                <input v-model="email" type="email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="">Password</label>
